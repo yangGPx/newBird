@@ -15,11 +15,12 @@
             color: #333;
         }
         body{
-            background: url(./bg.jpg);
             width: 100vw;
             height: 100vh;
             overflow: hidden;
             position: relative;
+            padding-top: 20vh;
+            background: url(./bg.jpg);
         }
         h3{
             text-align: center;
@@ -44,7 +45,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 30vh;
+            z-index: 3;
+            /*margin-top: 25vh;*/
+        }
+        .content * {
+            z-index: inherit;
         }
         h3 span{
             color: pink;
@@ -59,9 +64,35 @@
         .tip.show{
             display: block;
         }
+        textarea.text{
+            opacity: 1.2;
+            height: 317px;
+            width: 333px;
+            color: gold;
+            border: none;
+            background: transparent;
+            color: #fff;
+            outline: none;
+            z-index: 2;
+        }
+        .layout-flex{
+            display: flex;
+            justify-content: center;
+            margin-top: 45px;
+        }
+        .bg{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
+    <div class="bg"></div>
     <div class="content">
         <h3 style="margin-bottom: 15px;"><span class="animate__animated animate__rubberBand animate__infinite">杨小生</span>这厢有礼了</h3>
         <h3 class="animate__animated animate__rubberBand ">路过我的地盘，Please 交钱</h3>
@@ -70,7 +101,9 @@
         </div>
         <div class="tip animate__animated">啊哈，交钱了也不给过</div>
     </div>
-    <script src="./js/auto.js"></script>
+    <div class="layout-flex">
+        <textarea class="text animate__animated animate__slow" readonly></textarea>
+    </div>
     <script>
         setTimeout(() => {
             document.querySelector('.button').classList.add('animate__jello')
@@ -81,7 +114,9 @@
                 document.querySelector('.tip').classList.add('show')
                 document.querySelector('.tip').classList.remove('animate__backOutLeft')
                 document.querySelector('.tip').classList.add('animate__backInRight')
+                document.querySelector('.text').classList.add('animate__flip')
                 setTimeout(() => {
+                    document.querySelector('.text').classList.remove('animate__flip')
                     tip.classList.remove('animate__backInRight')
                     tip.classList.add('animate__backOutLeft')
                     setTimeout(() => {
@@ -91,6 +126,35 @@
             }
             
         })
+
+        document.querySelector('.text').value = `
+  く__,.ヘヽ.        /  ,ー､ 〉
+           ＼ ', !-─‐-i  /  /´
+           ／｀ｰ'       L/／｀ヽ､
+         /   ／,   /|   ,   ,       ',
+       ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
+        ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
+          !,/7 '0'     ´0iソ|    |
+          |.从"    _     ,,,, / |./    |
+          ﾚ'| i＞.､,,__  _,.イ /   .i   |
+            ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
+              | |/i 〈|/   i  ,.ﾍ |  i  |
+             .|/ /  ｉ：    ﾍ!    ＼  |
+              kヽ>､ﾊ    _,.ﾍ､    /､!
+              !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
+              ﾚ'ヽL__|___i,___,ンﾚ|ノ
+                  ﾄ-,/  |___./
+                  'ｰ'    !_,.:
+`
+        let index = 0
+        setInterval(() => {
+            const colors = ['#da2020',  '#c820da',  '#2d20da', '#da20d1', '#77da20', '#DA20D1','#daa220', '#da2020']
+            if (index === colors.length) {
+                index = 0
+            }
+            document.querySelector('.text').style.color = colors[index]
+            index++
+        }, 500)
     </script>
 </body>
 </html>
