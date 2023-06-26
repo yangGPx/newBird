@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曲水流觞</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root{
+            --main-color: #fe9802;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        body{
+            background: url(./bg.jpg);
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        h3{
+            text-align: center;
+            font-size: 24px;
+            color: var(--main-color);
+        }
+        span.button{
+            width: 150px;
+            height: 42px;
+            line-height: 42px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 16px;
+            color: #fff;
+            background: var( --main-color);
+        }
+        .button-wrapper{
+            text-align: center;
+            padding: 20px 0;
+        }
+        .content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30vh;
+        }
+        h3 span{
+            color: pink;
+            margin-right: 20px;
+            display: inline-block;
+        }
+        .tip{
+            color: #fff;
+            display: none;
+            font-size: 24px;
+        }
+        .tip.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h3 style="margin-bottom: 15px;"><span class="animate__animated animate__rubberBand animate__infinite">杨小生</span>这厢有礼了</h3>
+        <h3 class="animate__animated animate__rubberBand ">路过我的地盘，Please 交钱</h3>
+        <div class="button-wrapper">
+            <span class="animate__animated button">交钱</span>
+        </div>
+        <div class="tip animate__animated">啊哈，交钱了也不给过</div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector('.button').classList.add('animate__jello')
+        }, 700)
+        document.querySelector('.button').addEventListener('click', () => {
+            const tip = document.querySelector('.tip')
+            if (!tip.classList.contains('show')) {
+                document.querySelector('.tip').classList.add('show')
+                document.querySelector('.tip').classList.remove('animate__backOutLeft')
+                document.querySelector('.tip').classList.add('animate__backInRight')
+                setTimeout(() => {
+                    tip.classList.remove('animate__backInRight')
+                    tip.classList.add('animate__backOutLeft')
+                    setTimeout(() => {
+                        tip.classList.remove('show')
+                    }, 800)
+                }, 2500)
+            }
+            
+        })
+    </script>
+</body>
+</html>
